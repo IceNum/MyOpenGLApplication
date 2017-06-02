@@ -3,7 +3,8 @@ package com.opengl.myopenglapplication;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 
-import com.opengl.myopenglapplication.square.SmoothColoredSquare;
+import com.opengl.myopenglapplication.mesh.Cube;
+import com.opengl.myopenglapplication.mesh.Group;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -14,11 +15,10 @@ import static android.R.attr.angle;
  * Created by fotoable on 2017/6/2.
  */
 
- public class OpenGLRenderer implements GLSurfaceView.Renderer {
-    // Initialize our square.
-//    Square square = new Square(); //简单平面图
-//    FlatColoredSquare square = new FlatColoredSquare();//单色平面图
-    SmoothColoredSquare square = new SmoothColoredSquare();//渐变色平面图
+ public class OpenGLRenderer3D implements GLSurfaceView.Renderer {
+
+    Cube square = new Cube(1,1,1);
+    Group group = new Group();
     /**
      * 这个方法中主要用来设置一些绘制时不常变化的参数，比如：背景色，是否打开 z-buffer等。
      * @param gl
@@ -79,48 +79,47 @@ import static android.R.attr.angle;
         gl.glLoadIdentity();
         // Translates 4 units into the screen.
         gl.glTranslatef(0, 0, -10);
-        // Draw our square.
-//        square.draw(gl); // ( NEW )
+
 
         // SQUARE A
         // Save the current matrix.
         gl.glPushMatrix();
         // Rotate square A counter-clockwise.
-        gl.glRotatef(angle, 0, 0, 1);
+        gl.glRotatef(angle, 0.5f, 0.5f, 0.5f);
         // Draw square A.
         square.draw(gl);
         // Restore the last matrix.
         gl.glPopMatrix();
-
-        // SQUARE B
-        // Save the current matrix
-        gl.glPushMatrix();
-        // Rotate square B before moving it,
-        //making it rotate around A.旋转
-        gl.glRotatef(-angle, 0, 0, 1);
-        // Move square B.平移
-        gl.glTranslatef(2, 0, 0);
-        // Scale it to 50% of square 缩放A
-        gl.glScalef(.5f, .5f, .5f);
-        // Draw square B.
-        square.draw(gl);
+//
+//        // SQUARE B
+//        // Save the current matrix
+//        gl.glPushMatrix();
+//        // Rotate square B before moving it,
+//        //making it rotate around A.旋转
+//        gl.glRotatef(-angle, 0.5f, 0, 1);
+//        // Move square B.平移
+//        gl.glTranslatef(2, 0, 0);
+//        // Scale it to 50% of square 缩放A
+//        gl.glScalef(.5f, .5f, .5f);
+//        // Draw square B.
+//        square.draw(gl);
+////        gl.glPopMatrix();
+//
+//        // SQUARE C
+//        // Save the current matrix
+//        gl.glPushMatrix();
+//        // Make the rotation around B
+//        gl.glRotatef(-angle, 0, 0, 1);
+//        gl.glTranslatef(2, 0, 0);
+//        // Scale it to 50% of square B
+//        gl.glScalef(.5f, .5f, .5f);
+//        // Rotate around it's own center.
+//        gl.glRotatef(angle*10, 0, 0, 1);
+//        // Draw square C.
+//        square.draw(gl);
+//
 //        gl.glPopMatrix();
-
-        // SQUARE C
-        // Save the current matrix
-        gl.glPushMatrix();
-        // Make the rotation around B
-        gl.glRotatef(-angle, 0, 0, 1);
-        gl.glTranslatef(2, 0, 0);
-        // Scale it to 50% of square B
-        gl.glScalef(.5f, .5f, .5f);
-        // Rotate around it's own center.
-        gl.glRotatef(angle*10, 0, 0, 1);
-        // Draw square C.
-        square.draw(gl);
-
-        gl.glPopMatrix();
-        gl.glPopMatrix();
+//        gl.glPopMatrix();
 
 
     }

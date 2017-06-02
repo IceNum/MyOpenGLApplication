@@ -1,4 +1,4 @@
-package com.opengl.myopenglapplication;
+package com.opengl.myopenglapplication.activity;
 
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.opengl.myopenglapplication.OpenGLRenderer;
+
 /**
  * Created by fotoable on 2017/6/2.
  */
 
-public class TestActivity extends Activity implements View.OnClickListener {
+public class Picture2DActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

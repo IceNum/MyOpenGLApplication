@@ -1,4 +1,4 @@
-package com.opengl.myopenglapplication;
+package com.opengl.myopenglapplication.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.opengl.myopenglapplication.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "MainActivity";
@@ -30,10 +32,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.button1:
-                startActivity(new Intent(this,TestActivity.class));
+                startActivity(new Intent(this,Picture2DActivity.class));
                 break;
             case R.id.button2:
-
+                startActivity(new Intent(this,Picture3DActivity.class));
                 break;
             case R.id.button3:
 
