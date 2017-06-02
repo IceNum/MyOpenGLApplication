@@ -14,7 +14,9 @@ import static android.R.attr.angle;
 
 class OpenGLRenderer implements GLSurfaceView.Renderer {
     // Initialize our square.
-    Square square = new Square();
+//    Square square = new Square();
+//    FlatColoredSquare square = new FlatColoredSquare();
+    SmoothColoredSquare square = new SmoothColoredSquare();
     /**
      * 这个方法中主要用来设置一些绘制时不常变化的参数，比如：背景色，是否打开 z-buffer等。
      * @param gl
