@@ -11,7 +11,8 @@ import javax.microedition.khronos.opengles.GL10;
  */
 
 class OpenGLRenderer implements GLSurfaceView.Renderer {
-
+    // Initialize our square.
+    Square square = new Square();
     /**
      * 这个方法中主要用来设置一些绘制时不常变化的参数，比如：背景色，是否打开 z-buffer等。
      * @param gl
@@ -20,7 +21,7 @@ class OpenGLRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         // Set the background color to black ( rgba ).
-        gl.glClearColor(0.0f, 0.0f, 0.0f, 0.5f);
+        gl.glClearColor(-2.0f, 1.0f, 2.0f, 0.5f);
         // Enable Smooth Shading, default not really needed.
         gl.glShadeModel(GL10.GL_SMOOTH);
         // Depth buffer setup.
@@ -68,5 +69,11 @@ class OpenGLRenderer implements GLSurfaceView.Renderer {
         // Clears the screen and depth buffer.
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT |
                 GL10.GL_DEPTH_BUFFER_BIT);
+        // Replace the current matrix with the identity matrix
+        gl.glLoadIdentity();
+        // Translates 4 units into the screen.
+        gl.glTranslatef(0, 0, -4);
+        // Draw our square.
+        square.draw(gl); // ( NEW )
     }
 }
