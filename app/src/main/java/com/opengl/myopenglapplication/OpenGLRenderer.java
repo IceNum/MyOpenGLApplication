@@ -6,6 +6,8 @@ import android.opengl.GLU;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import static android.R.attr.angle;
+
 /**
  * Created by fotoable on 2017/6/2.
  */
@@ -21,7 +23,7 @@ class OpenGLRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         // Set the background color to black ( rgba ).
-        gl.glClearColor(-2.0f, 1.0f, 2.0f, 0.5f);
+        gl.glClearColor(0.0f, 1.0f, 1.0f, 0.5f);
         // Enable Smooth Shading, default not really needed.
         gl.glShadeModel(GL10.GL_SMOOTH);
         // Depth buffer setup.
@@ -72,8 +74,50 @@ class OpenGLRenderer implements GLSurfaceView.Renderer {
         // Replace the current matrix with the identity matrix
         gl.glLoadIdentity();
         // Translates 4 units into the screen.
-        gl.glTranslatef(0, 0, -4);
+        gl.glTranslatef(0, 0, -10);
         // Draw our square.
-        square.draw(gl); // ( NEW )
+//        square.draw(gl); // ( NEW )
+
+        // SQUARE A
+        // Save the current matrix.
+        gl.glPushMatrix();
+        // Rotate square A counter-clockwise.
+        gl.glRotatef(angle, 0, 0, 1);
+        // Draw square A.
+        square.draw(gl);
+        // Restore the last matrix.
+        gl.glPopMatrix();
+
+        // SQUARE B
+        // Save the current matrix
+        gl.glPushMatrix();
+        // Rotate square B before moving it,
+        //making it rotate around A.旋转
+        gl.glRotatef(-angle, 0, 0, 1);
+        // Move square B.平移
+        gl.glTranslatef(2, 0, 0);
+        // Scale it to 50% of square 缩放A
+        gl.glScalef(.5f, .5f, .5f);
+        // Draw square B.
+        square.draw(gl);
+//        gl.glPopMatrix();
+
+        // SQUARE C
+        // Save the current matrix
+        gl.glPushMatrix();
+        // Make the rotation around B
+        gl.glRotatef(-angle, 0, 0, 1);
+        gl.glTranslatef(2, 0, 0);
+        // Scale it to 50% of square B
+        gl.glScalef(.5f, .5f, .5f);
+        // Rotate around it's own center.
+        gl.glRotatef(angle*10, 0, 0, 1);
+        // Draw square C.
+        square.draw(gl);
+
+        gl.glPopMatrix();
+        gl.glPopMatrix();
+
+
     }
 }
